@@ -1,10 +1,14 @@
 const http = require('http');
 const hostname = '127.0.0.1';
 const port = 3000;
+const mongoose = require('mongoose');
+const User = require('./models/user');
 
-const { MongoClient } = require("mongodb")
-const uri = "mongodb://localhost:3000"
-const client = new MongoClient(uri);
+//Connect to MongoDB
+const uri = "mongodb+srv://admin:asauth!2021@cluster0.vqmxe.mongodb.net/asauthdb?retryWrites=true&w=majority";
+mongoose.connect(uri)
+  .then((result) => { "connected to db" })
+  .catch((err) => console.log(err));
 
 var createError = require('http-errors');
 var express = require('express');
@@ -16,6 +20,16 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
 var app = express();
+
+const server = http.createServer((req, res) => {
+  res.statusCode = 200;
+  res.setHeader('Content-Type', 'text/plain');
+  res.end('Demo Auth App');
+});
+
+server.listen(port, hostname, () => {
+  console.log('Server running at http://' +hostname+ ':'+port);
+})
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
