@@ -1,0 +1,16 @@
+<html lang="en">
+    <%- include('./partials/head.ejs') %>
+    <body>
+        <%- include('./partials/nav.ejs') %>
+        <div class="form">
+            <h2>Log In</h2>
+            <form action = 'login'>
+                <label for="email">Email
+                <input id="email" type="text"></label><br>
+                <label for="pass">Password
+                <input id="pass" type="password"></label><br>
+                <input type="submit" value="Log In">
+            </form>
+        </div>        
+    </body>
+</html>
